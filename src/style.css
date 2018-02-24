@@ -1,0 +1,140 @@
+.Gossip {
+    background-color: #fcfcfc;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    display: inline-block;
+    font-family: Arial;
+    height: 100%;
+    min-height: 200px;
+    position: relative;
+    width: 100%;
+}
+
+.Gossip__Not-Functional {
+    color: #ddd;
+    padding: 40px 0 20px;
+    text-align: center;
+}
+
+.Gossip__Thread {
+    height: calc(100% - 105px);
+    overflow-y: auto;
+    padding: 20px 10px 0;
+}
+
+.Gossip__Thread .Gossip__Thread__Message {
+    clear: both;
+    display: inline-block;
+    float: left;
+    margin-bottom: 10px;
+    max-width: 66%;
+}
+
+.Gossip__Thread .Gossip__Thread__Message.--own {
+    float: right;
+    text-align: right;
+}
+
+.Gossip__Thread__Message__Date {
+    text-align: center;
+}
+
+.Gossip__Thread__Message__Sender {
+    font-weight: 600;
+}
+
+.Gossip__Thread__Message__Time {
+    float: right;
+    font-size: 12px;
+    margin-left: 7px;
+    margin-top: 13px;
+}
+
+.Gossip__Thread .Gossip__Thread__Message.--own .Gossip__Thread__Message__Time {
+    float: left;
+    margin-left: 0;
+    margin-right: 7px;
+}
+
+.Gossip__Thread .Gossip__Thread__Message__Content {
+    background-color: #fff;
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border: 1px solid #eee;
+    color: #000;
+    float: left;
+    font-size: 18px;
+    font-weight: 300;
+    max-width: 75%;
+    padding: 10px 30px 10px 20px;
+}
+
+.Gossip__Thread .Gossip__Thread__Message.--own .Gossip__Thread__Message__Content {
+    background-color: #5C84F0 !important;
+    border-top-right-radius: 0;
+    border-top-left-radius: 20px;
+    color: white !important;
+    padding-right: 15px;
+    float: right;
+}
+
+.Gossip__Thread .Gossip__Thread__Message__Content .Gossip__Thread__Message__Content__Att {
+    cursor: pointer;
+}
+
+.Gossip__Thread .Gossip__Thread__Message__Content .Gossip__Thread__Message__Content__Att img {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.Gossip__Thread .Gossip__Thread__Message.--self .Gossip__Thread__Message__Content {
+    background-color: #3a9f42 !important;
+    border-radius: 5px !important;
+}
+
+.Gossip .Gossip__Composer input {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    bottom: 15px;
+    font-size: 0.9em;
+    left: 2.5%;
+    outline: none;
+    padding: 15px;
+    position: absolute;
+    width: calc(95% - 30px);
+}
+
+.Gossip .Gossip__Composer input:hover {
+    cursor: pointer;
+    border-color: #afc5ff;
+}
+
+.Gossip .Gossip__Composer input:focus {
+    border-color: #7391e4;
+}
+
+.Gossip .Gossip__Composer span {
+    background-color: #9f9f9f;
+    border-radius: 3px;
+    bottom: 20px;
+    color: #fff;
+    float: right;
+    padding: 10px 20px;
+    position: absolute;
+    right: 20px;
+}
+
+.Gossip .Gossip__Composer span.--enabled {
+    color: #fff;
+    background-color: #5C84F0;
+}
+
+.Gossip .Gossip__Composer span.--enabled:hover {
+    cursor: pointer;
+}
+
+.Gossip .Gossip__Error {
+    color: red;
+    text-align: center;
+}
