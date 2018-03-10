@@ -1,4 +1,4 @@
-# raket
+# react-gossip
 React chat component for [gossip-js](https://github.com/harund/gossip-js) messaging library.
 
 ## Installation
