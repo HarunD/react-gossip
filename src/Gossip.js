@@ -246,7 +246,7 @@ export default class Gossip extends Component {
             ? false
             : true;
         let inputPlaceholder = (isSendingDisabled)
-            ? 'There was en error.'
+            ? 'There was en error. Sending messages currently disabled.'
             : 'Enter your message here. Press ENTER to send.';
 
         return (
