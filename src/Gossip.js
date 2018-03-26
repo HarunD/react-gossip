@@ -21,6 +21,10 @@ export default class Gossip extends Component {
         this._setupAndConnect({channel: this.props.channel, channelSecret: this.props.channelSecret, userNick: this.props.nick, userSecret: this.props.secret});
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        this._scrollToBottom();
+    }
+
     componentWillUnmount() {
         this
             .state
@@ -36,6 +40,14 @@ export default class Gossip extends Component {
 
         if (nextProps.newMessage) {
             this._sendMessage(nextProps.newMessage);
+        }
+    }
+
+    _log = (msg, detail) => {
+        if (this.props.shouldLog) {
+            console.log("Gossip", msg, detail
+                ? detail
+                : '');
         }
     }
 
@@ -57,39 +69,34 @@ export default class Gossip extends Component {
             .newChannel(name, secret);
 
         C.onconnect = () => {
-            console.log("Gossip connected to channel");
+            this._log("connected to channel");
             this.setState({hasError: false, isChannelConnected: true});
         }
 
         C.onmessage = msg => {
-            console.log("Gossip got message: ", this.state.nick, msg);
+            this._log("got message: ", this.state.nick, msg);
             let messageThread = this.state.messageThread;
             messageThread.push(msg);
             this.setState({hasError: false, messageThread});
-
-            setTimeout(() => {
-                this._scrollToBottom()
-            }, 500);
+            this
+                .props
+                .onMessageReceived(msg);
         };
 
         C.onhistory = history => {
-            console.log("Gossip got history: ", history);
+            this._log("got history: ", history);
             let messageThread = this.state.messageThread;
             messageThread = history.concat(messageThread);
             this.setState({hasError: false, messageThread});
-
-            setTimeout(() => {
-                this._scrollToBottom()
-            }, 500);
         };
 
         C.onerror = err => {
-            console.error("Gossip has error: ", err);
+            this._log("has error: ", err);
             this.setState({hasError: true, errorMsg: err});
         }
 
         C.onclose = () => {
-            console.log("Gossip closed");
+            this._log("closed");
             this.setState({isChannelConnected: false});
         }
 
@@ -125,19 +132,24 @@ export default class Gossip extends Component {
             .C
             .send(newMsg.text, newMsg.meta);
 
+        this._appendSentMessageToThread(newMsg);
+        this
+            .props
+            .onMessageSent(newMsg);
+    }
+
+    _appendSentMessageToThread = newMsg => {
         let time = new Date();
         time = time.toISOString();
+
         let messageThread = this.state.messageThread;
         messageThread.push({from: this.state.nick, text: newMsg.text, meta: newMsg.meta, time});
-        this.setState({newMessage: '', messageThread});
 
-        setTimeout(() => {
-            this._scrollToBottom()
-        }, 500);
+        this.setState({newMessage: '', messageThread});
     }
 
     _scrollToBottom = () => {
-        let $ = document.getElementById(this.props.threadId);
+        const $ = document.getElementById(this.props.threadId);
         if ($) {
             $.scrollTop = $.scrollHeight;
         }
@@ -146,6 +158,7 @@ export default class Gossip extends Component {
     /*
         Render methods
     */
+
     _renderThread = () => {
         let {C, messageThread, nick} = this.state;
 
