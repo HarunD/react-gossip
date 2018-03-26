@@ -149,7 +149,7 @@ export default class Gossip extends Component {
     }
 
     _scrollToBottom = () => {
-        const $ = document.getElementById(this.props.threadId);
+        let $ = document.getElementById(this.props.threadId);
         if ($) {
             $.scrollTop = $.scrollHeight;
         }
