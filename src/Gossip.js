@@ -78,9 +78,12 @@ export default class Gossip extends Component {
             let messageThread = this.state.messageThread;
             messageThread.push(msg);
             this.setState({hasError: false, messageThread});
-            this
-                .props
-                .onMessageReceived(msg);
+
+            if (this.props.onMessageReceived) {
+                this
+                    .props
+                    .onMessageReceived(msg);
+            }
         };
 
         C.onhistory = history => {
@@ -133,9 +136,12 @@ export default class Gossip extends Component {
             .send(newMsg.text, newMsg.meta);
 
         this._appendSentMessageToThread(newMsg);
-        this
-            .props
-            .onMessageSent(newMsg);
+
+        if (this.props.onMessageSent) {
+            this
+                .props
+                .onMessageSent(newMsg);
+        }
     }
 
     _appendSentMessageToThread = newMsg => {
@@ -284,9 +290,11 @@ export default class Gossip extends Component {
 
 Gossip.defaultProps = {
     className: '',
+    isSSL: false,
+    onMessageReceived: null,
+    onMessageSent: null,
     shouldLog: false,
-    style: null,
-    isSSL: false
+    style: null
 };
 
 Gossip.propTypes = {

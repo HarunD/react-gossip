@@ -36,7 +36,9 @@
 }
 
 .Gossip__Thread__Message__Date {
+    display: inline-block;
     text-align: center;
+    width: 100%;
 }
 
 .Gossip__Thread__Message__Sender {
