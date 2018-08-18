@@ -1,7 +1,7 @@
 # react-gossip
 React chat component for [gossip-js](https://github.com/harund/gossip-js) messaging library.
 
-<img src="demo.gif">
+<img src="demo.gif" height="400px;">
 
 ## Installation
 
