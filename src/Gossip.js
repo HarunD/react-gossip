@@ -1,3 +1,5 @@
+// TODO:
+// - add flow
 import React, {Component} from 'react';
 import PropTypes, {func} from 'prop-types';
 import GossipJS from 'gossip-js';
@@ -197,8 +199,7 @@ export default class Gossip extends Component {
                         ? true
                         : false;
 
-                    if (isSelf && !isMine) {
-                        // 'self' messages only visible to current user if he is their creator
+                    if (isSelf && !this.props.shouldSeeSelf) {
                         return null;
                     }
 
@@ -294,6 +295,7 @@ Gossip.defaultProps = {
     onMessageReceived: null,
     onMessageSent: null,
     shouldLog: false,
+    shouldSeeSelf: false,
     style: null
 };
 
@@ -306,6 +308,7 @@ Gossip.propTypes = {
     nick: PropTypes.string.isRequired,
     secret: PropTypes.string.isRequired,
     shouldLog: PropTypes.bool,
+    shouldSeeSelf: PropTypes.bool,
     style: PropTypes.object,
     threadId: PropTypes.string.isRequired
 };
