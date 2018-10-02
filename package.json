@@ -1,6 +1,6 @@
 {
   "name": "react-gossip",
-  "version": "0.0.82",
+  "version": "0.0.83",
   "description": "React component for gossip-js library",
   "main": "build/index.js",
   "author": "Harun Djulic <harundulic@gmail.com>",
