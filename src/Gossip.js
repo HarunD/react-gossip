@@ -203,13 +203,11 @@ export default class Gossip extends Component {
                         return null;
                     }
 
-                    let isFromVisible;
+                    let isFromVisible = true;
                     if (this.props.nameDisplayStyle === 'grouped') {
                         isFromVisible = (k === 0 || (k > 0 && m.from !== arr[k - 1].from))
                             ? true
                             : false;
-                    } else {
-                        isFromVisible = true;
                     }
 
                     let isNewDay = true;
