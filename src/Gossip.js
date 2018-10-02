@@ -203,9 +203,14 @@ export default class Gossip extends Component {
                         return null;
                     }
 
-                    let isFromVisible = (k === 0 || (k > 0 && m.from !== arr[k - 1].from))
-                        ? true
-                        : false;
+                    let isFromVisible;
+                    if (this.props.nameDisplayStyle === 'grouped') {
+                        isFromVisible = (k === 0 || (k > 0 && m.from !== arr[k - 1].from))
+                            ? true
+                            : false;
+                    } else {
+                        isFromVisible = true;
+                    }
 
                     let isNewDay = true;
                     let timestamp = new Date(m.time);
@@ -292,6 +297,7 @@ export default class Gossip extends Component {
 Gossip.defaultProps = {
     className: '',
     isSSL: false,
+    nameDisplayStyle: 'grouped',
     onMessageReceived: null,
     onMessageSent: null,
     shouldLog: false,
@@ -305,6 +311,7 @@ Gossip.propTypes = {
     channelSecret: PropTypes.string.isRequired,
     className: PropTypes.string,
     isSSL: PropTypes.bool,
+    nameDisplayStyle: PropTypes.string,
     nick: PropTypes.string.isRequired,
     secret: PropTypes.string.isRequired,
     shouldLog: PropTypes.bool,
