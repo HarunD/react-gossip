@@ -238,8 +238,10 @@ export default class Gossip extends Component {
                                 : ''} ${isSelf
                                     ? '--self'
                                     : ''}`}>
-                                {isFromVisible && <div className="Gossip__Thread__Message__Sender">{m.from}</div>}
-                                <div className="Gossip__Thread__Message__Time">{time}</div>
+                                <section>
+                                    {isFromVisible && <div className="Gossip__Thread__Message__Sender">{m.from}</div>}
+                                    <div className="Gossip__Thread__Message__Time">{time}</div>
+                                </section>
                                 <div className="Gossip__Thread__Message__Content">
                                     {m.text}
                                     {hasImage && <div className="Gossip__Thread__Message__Content__Att">
