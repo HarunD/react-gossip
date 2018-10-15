@@ -128,7 +128,7 @@ export default class Gossip extends Component {
     }
 
     _sendMessage = newMsg => {
-        if (!this.state.isChannelConnected) {
+        if (!this.state.isChannelConnected || !newMsg.text) {
             return;
         }
 
