@@ -195,10 +195,7 @@ export default class Gossip extends Component {
                     let isSelf = (m.meta && m.meta.is_self === 'yes')
                         ? true
                         : false;
-                    let hasImage = (m.meta && m.meta.img_url)
-                        ? true
-                        : false;
-
+                    
                     if (isSelf && !this.props.shouldSeeSelf) {
                         return null;
                     }
@@ -244,10 +241,12 @@ export default class Gossip extends Component {
                                 </section>
                                 <div className="Gossip__Thread__Message__Content">
                                     {m.text}
-                                    {hasImage && <div className="Gossip__Thread__Message__Content__Att">
-                                        <img
-                                            src={m.meta.img_url}
-                                            onClick={() => this._handleAttachmentClick(m.meta.img_url)}/></div>}
+                                    {m.meta && m.url && <div className="Gossip__Thread__Message__Content__Att">
+                                        {m.is_image ? <img
+                                            src={m.meta.url}
+                                            onClick={() => this._handleAttachmentClick(m.meta.url)} /> :
+                                            <a href={m.meta.url} target="_blank">{m.meta.url}</a>}
+                                    </div>}
                                 </div>
                             </div>
                         </div>
