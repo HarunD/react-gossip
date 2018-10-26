@@ -242,9 +242,10 @@ export default class Gossip extends Component {
                                 <div className="Gossip__Thread__Message__Content">
                                     {m.text}
                                     {m.meta && m.meta.url && <div className="Gossip__Thread__Message__Content__Att">
-                                        {m.meta.is_image ? <img
+                                        {m.meta.type === 'image' && <img
                                             src={m.meta.url}
-                                            onClick={() => this._handleAttachmentClick(m.meta.url)} /> :
+                                            onClick={() => this._handleAttachmentClick(m.meta.url)} />}
+                                        {m.meta.type === 'file' &&
                                             <a href={m.meta.url} target="_blank">{m.meta.url}</a>}
                                     </div>}
                                 </div>
