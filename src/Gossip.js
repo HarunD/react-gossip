@@ -118,9 +118,10 @@ export default class Gossip extends Component {
     }
 
     _handleKeyPress = event => {
-        if (event.key === 'Enter') {
-            this._sendMessage({text: this.state.newMessage});
-        }
+        if (event.key === "Enter" && !event.shiftKey) {
+            this._sendMessage({ text: this.state.newMessage });
+            event.preventDefault();
+        }        
     }
 
     _handleAttachmentClick = url => {
@@ -279,15 +280,16 @@ export default class Gossip extends Component {
                 {this._renderThread()}
                 {hasError && this._renderError()}
                 <div className="Gossip__Composer">
-                    <input
+                    <textarea
                         autoFocus
+                        rows="1"
                         type="text"
                         name="newMessage"
                         disabled={isSendingDisabled}
                         placeholder={inputPlaceholder}
                         value={this.state.newMessage}
                         onChange={this._handleChange}
-                        onKeyPress={this._handleKeyPress}/>
+                        onKeyPress={this._handleKeyPress} />
                 </div>
             </div>
         );
