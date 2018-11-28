@@ -94,7 +94,7 @@
     border-radius: 5px !important;
 }
 
-.Gossip .Gossip__Composer input {
+.Gossip .Gossip__Composer textarea {
     background: #fff;
     border: 1px solid #eee;
     border-radius: 3px;
@@ -107,12 +107,12 @@
     width: calc(95% - 30px);
 }
 
-.Gossip .Gossip__Composer input:hover {
+.Gossip .Gossip__Composer textarea:hover {
     cursor: pointer;
     border-color: #afc5ff;
 }
 
-.Gossip .Gossip__Composer input:focus {
+.Gossip .Gossip__Composer textarea:focus {
     border-color: #7391e4;
 }
 
